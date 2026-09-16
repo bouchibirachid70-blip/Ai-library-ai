@@ -31,4 +31,6 @@ export const TEXT_LIMITS = {
   category_description: 500,
   submission_email: 254,
   notes: 1000,
+  ad_slot_position: 100,
+  ad_slot_code: 8000,
 };

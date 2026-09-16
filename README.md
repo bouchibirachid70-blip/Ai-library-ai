@@ -44,8 +44,9 @@ The `VITE_*` values ship to the browser; the others are server-only.
 
 The Supabase schema lives in `supabase/migrations/0001_init.sql`. For
 self-hosted deployments, apply the migration, the click-counter function
-(`supabase/migrations/0002_click_function.sql`), and the hardening
-migrations `0004` and `0005`.
+(`supabase/migrations/0002_click_function.sql`), the hardening
+migrations `0004` and `0005`, and the ad slots table (`0006_ad_slots.sql`)
+if you plan to use the admin **Ad slots** page.
 
 ## Admin access
 

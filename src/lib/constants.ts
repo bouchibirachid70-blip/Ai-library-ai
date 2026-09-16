@@ -34,4 +34,24 @@ export const TEXT_LIMITS = {
   category_description: 500,
   submission_email: 254,
   notes: 1000,
+  ad_slot_position: 100,
+  ad_slot_code: 8000,
 };
+
+// Position keys already wired up in the site's pages, shown to the admin as
+// suggestions when adding an ad slot. The position field itself is free
+// text — an admin can type any key — but a slot only renders somewhere if an
+// <AdSlot position="..."/> using that exact key exists in the frontend.
+export const KNOWN_AD_POSITIONS = [
+  'home_top',
+  'home_middle',
+  'home_bottom',
+  'tools_list_top',
+  'tools_list_bottom',
+  'tool_detail_top',
+  'tool_detail_middle',
+  'tool_detail_bottom',
+  'category_top',
+  'blog_list_top',
+  'blog_post_bottom',
+] as const;

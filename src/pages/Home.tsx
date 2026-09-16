@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, Compass, ShieldCheck, Zap } from 'lucide-react';
 import { api } from '../lib/api';
 import type { Article, Category, Tool } from '../types';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import ToolCard from '../components/ToolCard';
 import CategoryCard from '../components/CategoryCard';
 import Loader from '../components/Loader';
@@ -129,6 +130,8 @@ export default function Home() {
         </div>
       </section>
 
+      <AdSlot position="home_top" className="mx-auto max-w-7xl px-4 pb-4 sm:px-6 lg:px-8" />
+
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
@@ -160,6 +163,8 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      <AdSlot position="home_middle" className="mx-auto max-w-7xl px-4 pb-4 sm:px-6 lg:px-8" />
 
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         <div className="mb-6 flex items-end justify-between gap-4">
@@ -252,6 +257,8 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      <AdSlot position="home_bottom" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8" />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import FilterBar, { type FilterValue } from '../components/FilterBar';
 import ToolCard from '../components/ToolCard';
 import Pagination from '../components/Pagination';
@@ -71,6 +72,8 @@ export default function ToolsList() {
         </div>
       </div>
 
+      <AdSlot position="tools_list_top" className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8" />
+
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {loading && <Loader label="Loading tools…" />}
         {!loading && error && <ErrorState message={error} onRetry={refetch} />}
@@ -108,6 +111,8 @@ export default function ToolsList() {
           </>
         )}
       </div>
+
+      <AdSlot position="tools_list_bottom" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8" />
     </>
   );
 }

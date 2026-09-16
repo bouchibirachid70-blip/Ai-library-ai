@@ -254,6 +254,10 @@ export function allowedSubmissionFields() {
   return ['tool_name', 'website_url', 'description', 'submitter_email', 'category_id'];
 }
 
+export function allowedAdSlotFields() {
+  return ['position', 'code', 'is_active'];
+}
+
 // Defensive whitelist filter: drops any key the caller is not allowed to set.
 export function pick(obj, allowed) {
   if (!obj || typeof obj !== 'object') return {};

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import ToolCard from '../components/ToolCard';
 import FilterBar, { type FilterValue } from '../components/FilterBar';
 import Pagination from '../components/Pagination';
@@ -110,6 +111,8 @@ export default function CategoryDetail() {
           </>
         )}
       </div>
+
+      <AdSlot position="category_top" className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8" />
 
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {loading && <Loader label="Loading tools…" />}

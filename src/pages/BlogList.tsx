@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../lib/api';
 import type { Article, PaginatedResponse } from '../types';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import PageHeader from '../components/PageHeader';
 import Pagination from '../components/Pagination';
 import Loader from '../components/Loader';
@@ -53,6 +54,7 @@ export default function BlogList() {
         title="Aivora blog"
         description="Comparisons, workflow deep-dives, and notes from people building with AI."
       />
+      <AdSlot position="blog_list_top" className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8" />
       <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
         {loading && <Loader label="Loading articles…" />}
         {!loading && error && <ErrorState message={error} onRetry={() => setPage(1)} />}

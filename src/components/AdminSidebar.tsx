@@ -5,6 +5,7 @@ import {
   Tags,
   Inbox,
   Newspaper,
+  Megaphone,
   Settings,
   LogOut,
 } from 'lucide-react';
@@ -16,6 +17,7 @@ const NAV = [
   { to: '/admin/categories', label: 'Categories', icon: Tags },
   { to: '/admin/submissions', label: 'Submissions', icon: Inbox },
   { to: '/admin/articles', label: 'Articles', icon: Newspaper },
+  { to: '/admin/ad-slots', label: 'Ad slots', icon: Megaphone },
   { to: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 

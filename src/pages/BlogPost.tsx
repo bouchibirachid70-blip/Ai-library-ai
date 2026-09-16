@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { ChevronLeft, Calendar, User as UserIcon } from 'lucide-react';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import Loader from '../components/Loader';
 import ErrorState from '../components/ErrorState';
 import { useArticle } from '../hooks/useArticles';
@@ -97,6 +98,7 @@ export default function BlogPost() {
           // subset (p, h1–h6, ul/li, code, strong, em, br, a with http(s) href).
           dangerouslySetInnerHTML={{ __html: html }}
         />
+        <AdSlot position="blog_post_bottom" className="mt-10" />
       </article>
     </>
   );

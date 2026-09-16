@@ -10,6 +10,7 @@ import {
   Tag as TagIcon,
 } from 'lucide-react';
 import Seo from '../components/Seo';
+import AdSlot from '../components/AdSlot';
 import Loader from '../components/Loader';
 import ErrorState from '../components/ErrorState';
 import ToolCard from '../components/ToolCard';
@@ -107,6 +108,8 @@ export default function ToolDetail() {
           <ChevronLeft className="h-4 w-4" /> All tools
         </Link>
 
+        <AdSlot position="tool_detail_top" className="mt-6" />
+
         <div className="mt-6 flex flex-col gap-6 rounded-3xl border border-white/5 bg-slate-900/60 p-6 sm:flex-row sm:items-start sm:p-8">
           <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-slate-700 ring-1 ring-white/10">
             {tool.logo_url ? (
@@ -200,6 +203,8 @@ export default function ToolDetail() {
           </div>
         </div>
 
+        <AdSlot position="tool_detail_middle" className="mt-8" />
+
         {tool.tags && tool.tags.length > 0 && (
           <div className="mt-8 rounded-2xl border border-white/5 bg-slate-900/40 p-6">
             <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-slate-300">
@@ -228,6 +233,8 @@ export default function ToolDetail() {
             </div>
           </section>
         )}
+
+        <AdSlot position="tool_detail_bottom" className="mt-12" />
       </div>
     </>
   );

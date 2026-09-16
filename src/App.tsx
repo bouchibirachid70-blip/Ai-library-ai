@@ -26,6 +26,7 @@ import AdminSubmissions from './pages/admin/AdminSubmissions';
 import AdminArticles from './pages/admin/AdminArticles';
 import AdminArticleEdit from './pages/admin/AdminArticleEdit';
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminAdSlots from './pages/admin/AdminAdSlots';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
               <Route path="articles" element={<AdminArticles />} />
               <Route path="articles/new" element={<AdminArticleEdit />} />
               <Route path="articles/:id" element={<AdminArticleEdit />} />
+              <Route path="ad-slots" element={<AdminAdSlots />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
 

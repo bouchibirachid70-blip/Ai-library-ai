@@ -103,3 +103,15 @@ export type ApiError = {
   error: string;
   details?: unknown;
 };
+
+// Ad slot: admin-authored ad code (AdSense/JS snippet) attached to a
+// free-text "position" key. The frontend renders whatever active slots
+// match the position an <AdSlot /> asks for — see src/components/AdSlot.tsx.
+export interface AdSlot {
+  id: string;
+  position: string;
+  code: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at?: string;
+}
