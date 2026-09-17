@@ -2,15 +2,15 @@
 // Admin-only listing of tools across all statuses, with pagination and search.
 // Uses the service-role client to bypass the public RLS filter on tools.
 
-import { handleOptions } from '../_lib/cors.js';
+import { handleOptions } from '../cors.js';
 import {
   asEnum,
   paginationParams,
   sanitizeSearch,
   serverError,
-} from '../_lib/validation.js';
-import { requireAdmin } from '../_lib/auth.js';
-import supabase from '../_lib/db-client.js';
+} from '../validation.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

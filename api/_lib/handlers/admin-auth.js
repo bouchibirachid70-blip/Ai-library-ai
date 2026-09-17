@@ -5,9 +5,9 @@
 //
 //   GET — read current admin from Authorization header (same logic, GET-only).
 
-import { handleOptions } from '../_lib/cors.js';
-import { badRequest, serverError, unauthorized, forbidden } from '../_lib/validation.js';
-import { requireAdmin } from '../_lib/auth.js';
+import { handleOptions } from '../cors.js';
+import { badRequest, serverError, unauthorized, forbidden } from '../validation.js';
+import { requireAdmin } from '../auth.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

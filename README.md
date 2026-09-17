@@ -71,21 +71,34 @@ never gets to decide who is an admin.
 ```
 api/                 # Vercel serverless API routes
   _lib/              # shared auth, validation, ratelimit, constants
-  tools/             # /api/tools, /api/tools/:id, /api/tools/slug/:slug
-  categories/        # /api/categories, /api/categories/:id, ...
-  submissions/       # /api/submissions, /api/submissions/:id
-  articles/          # /api/articles, /api/articles/:id, /api/articles/slug/:slug
-  admin/             # /api/admin/auth, /api/admin/check, /api/admin/tools
+  _lib/handlers/     # actual route logic (see note below)
+  tools/             # [[...segments]].js -> /api/tools, /:id, /slug/:slug
+  categories/        # [[...segments]].js -> /api/categories, /:id, /slug/:slug
+  submissions/       # [[...segments]].js -> /api/submissions, /:id
+  ad-slots/          # [[...segments]].js -> /api/ad-slots, /:id
+  articles/          # [[...segments]].js -> /api/articles, /:id, /slug/:slug
+  admin/             # [[...segments]].js -> /api/admin/auth|check|tools|ad-slots
   click.js           # atomic click tracking
   contact.js         # public contact form
   metrics.js         # admin dashboard metrics
 src/
-  components/        # shared UI (cards, header, footer, etc.)
+  components/        # shared UI (cards, header, footer, AdSlot, etc.)
   contexts/          # AdminAuthContext
   hooks/             # useTools, useCategories, useArticles, useDebounce
   layouts/           # PublicLayout, AdminLayout
-  lib/               # supabase client, api wrapper, validation, format
+  lib/               # supabase client, api wrapper, validation, format, adSlots cache
   pages/             # public + admin pages
   types/             # TypeScript types
-supabase/migrations/ # SQL migrations (schema + click function)
+supabase/migrations/ # SQL migrations (schema + click function + ad_slots)
 ```
+
+**Why `[[...segments]].js` instead of one file per route?** Vercel's Hobby
+(free) plan caps a deployment at **12 Serverless Functions**. Each `.js` file
+directly under `api/` (outside `_lib/`) counts as one function, and one file
+per REST route quickly exceeds that. Each resource folder instead has a
+single optional catch-all route (`[[...segments]].js`) that dispatches, by
+segment count, to the handler that used to live at that exact path — now
+moved verbatim into `api/_lib/handlers/` (no behavior changed, just where the
+code lives). This keeps the project at 11 functions total. If you're on a
+paid Vercel plan and prefer one file per route for readability, you can
+freely split these back out.

@@ -3,7 +3,7 @@
 //   PUT    — admin: update
 //   DELETE — admin: delete
 
-import { handleOptions } from '../_lib/cors.js';
+import { handleOptions } from '../cors.js';
 import {
   asString,
   asOptionalString,
@@ -19,10 +19,10 @@ import {
   requireHttpUrl,
   allowedToolFields,
   toolPricing,
-} from '../_lib/validation.js';
-import { requireAdmin } from '../_lib/auth.js';
-import supabase from '../_lib/db-client.js';
-import { PRICING_OPTIONS, TEXT_LIMITS } from '../_lib/constants.js';
+} from '../validation.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
+import { PRICING_OPTIONS, TEXT_LIMITS } from '../constants.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

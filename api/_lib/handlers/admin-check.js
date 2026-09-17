@@ -3,9 +3,9 @@
 // the admin chrome. The check is *always* enforced server-side; this is just
 // a convenience so the UI can render gracefully.
 
-import { handleOptions } from '../_lib/cors.js';
-import { serverError } from '../_lib/validation.js';
-import { getAdminFromRequest } from '../_lib/auth.js';
+import { handleOptions } from '../cors.js';
+import { serverError } from '../validation.js';
+import { getAdminFromRequest } from '../auth.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

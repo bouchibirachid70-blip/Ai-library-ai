@@ -3,7 +3,7 @@
 //   PATCH — admin: approve / reject / add notes
 //   DELETE — admin: discard
 
-import { handleOptions } from '../_lib/cors.js';
+import { handleOptions } from '../cors.js';
 import {
   asEnum,
   asOptionalString,
@@ -11,10 +11,10 @@ import {
   notFound,
   serverError,
   requireUuid,
-} from '../_lib/validation.js';
-import { requireAdmin } from '../_lib/auth.js';
-import supabase from '../_lib/db-client.js';
-import { TEXT_LIMITS } from '../_lib/constants.js';
+} from '../validation.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
+import { TEXT_LIMITS } from '../constants.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

@@ -2,10 +2,10 @@
 // Admin-only listing of ALL ad slots, active and inactive, for the
 // management table in the admin dashboard. Mirrors /api/admin/tools.js.
 
-import { handleOptions } from '../_lib/cors.js';
-import { serverError } from '../_lib/validation.js';
-import { requireAdmin } from '../_lib/auth.js';
-import supabase from '../_lib/db-client.js';
+import { handleOptions } from '../cors.js';
+import { serverError } from '../validation.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

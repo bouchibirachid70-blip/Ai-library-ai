@@ -1,9 +1,9 @@
 // /api/articles/slug/[slug] — public if published, admin otherwise.
 
-import { handleOptions } from '../../_lib/cors.js';
-import { badRequest, notFound, serverError } from '../../_lib/validation.js';
-import { requireAdmin } from '../../_lib/auth.js';
-import supabase from '../../_lib/db-client.js';
+import { handleOptions } from '../cors.js';
+import { badRequest, notFound, serverError } from '../validation.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
 
 const SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,78}[a-z0-9])?$/;
 

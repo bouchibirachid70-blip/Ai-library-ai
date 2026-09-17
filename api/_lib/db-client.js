@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { triggerRestore } from '../db-wake.js';
+import { triggerRestore } from './db-wake.js';
 
 // Server-only Supabase client. Uses the service-role key, which MUST NEVER be
 // exposed to the browser. The URL/anon values are public, so we accept either

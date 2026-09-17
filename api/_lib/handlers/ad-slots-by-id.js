@@ -3,7 +3,7 @@
 //   DELETE     — admin: remove the ad slot.
 // (No public GET here — the public list lives at GET /api/ad-slots.)
 
-import { handleOptions } from '../_lib/cors.js';
+import { handleOptions } from '../cors.js';
 import {
   asString,
   asBool,
@@ -13,10 +13,10 @@ import {
   requireUuid,
   pick,
   allowedAdSlotFields,
-} from '../_lib/validation.js';
-import { requireAdmin } from '../_lib/auth.js';
-import supabase from '../_lib/db-client.js';
-import { TEXT_LIMITS } from '../_lib/constants.js';
+} from '../validation.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
+import { TEXT_LIMITS } from '../constants.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;

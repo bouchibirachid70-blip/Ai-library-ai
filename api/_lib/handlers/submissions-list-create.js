@@ -2,7 +2,7 @@
 //   POST — public: submit a new tool for review. Rate-limited.
 //   GET  — admin: list pending/recent submissions with filters & pagination.
 
-import { handleOptions } from '../_lib/cors.js';
+import { handleOptions } from '../cors.js';
 import {
   asString,
   asOptionalString,
@@ -16,11 +16,11 @@ import {
   requireEmail,
   requireHttpUrl,
   sanitizeSearch,
-} from '../_lib/validation.js';
-import { rateLimit } from '../_lib/ratelimit.js';
-import { requireAdmin } from '../_lib/auth.js';
-import supabase from '../_lib/db-client.js';
-import { RATE_LIMITS, TEXT_LIMITS } from '../_lib/constants.js';
+} from '../validation.js';
+import { rateLimit } from '../ratelimit.js';
+import { requireAdmin } from '../auth.js';
+import supabase from '../db-client.js';
+import { RATE_LIMITS, TEXT_LIMITS } from '../constants.js';
 
 export default async function handler(req, res) {
   if (handleOptions(req, res)) return;
