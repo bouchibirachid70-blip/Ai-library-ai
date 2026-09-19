@@ -70,14 +70,14 @@ never gets to decide who is an admin.
 
 ```
 api/                 # Vercel serverless API routes
-  _lib/              # shared auth, validation, ratelimit, constants
+  _lib/              # shared auth, validation, ratelimit, constants, db-wake
   _lib/handlers/     # actual route logic (see note below)
-  tools/             # [[...segments]].js -> /api/tools, /:id, /slug/:slug
-  categories/        # [[...segments]].js -> /api/categories, /:id, /slug/:slug
-  submissions/       # [[...segments]].js -> /api/submissions, /:id
-  ad-slots/          # [[...segments]].js -> /api/ad-slots, /:id
-  articles/          # [[...segments]].js -> /api/articles, /:id, /slug/:slug
-  admin/             # [[...segments]].js -> /api/admin/auth|check|tools|ad-slots
+  tools/             # [...segments].js -> /api/tools, /:id, /slug/:slug
+  categories/        # [...segments].js -> /api/categories, /:id, /slug/:slug
+  submissions/       # [...segments].js -> /api/submissions, /:id
+  ad-slots/          # [...segments].js -> /api/ad-slots, /:id
+  articles/          # [...segments].js -> /api/articles, /:id, /slug/:slug
+  admin/             # [...segments].js -> /api/admin/auth|check|tools|ad-slots
   click.js           # atomic click tracking
   contact.js         # public contact form
   metrics.js         # admin dashboard metrics
@@ -92,13 +92,25 @@ src/
 supabase/migrations/ # SQL migrations (schema + click function + ad_slots)
 ```
 
-**Why `[[...segments]].js` instead of one file per route?** Vercel's Hobby
+**Why `[...segments].js` instead of one file per route?** Vercel's Hobby
 (free) plan caps a deployment at **12 Serverless Functions**. Each `.js` file
 directly under `api/` (outside `_lib/`) counts as one function, and one file
 per REST route quickly exceeds that. Each resource folder instead has a
-single optional catch-all route (`[[...segments]].js`) that dispatches, by
+single **mandatory** catch-all route (`[...segments].js`, Vercel's
+native/framework-agnostic dynamic-route syntax — note this is *not* the same
+as Next.js's optional `[[...segments]].js`, which Vercel's plain Serverless
+Functions runtime does not recognize as a route at all) that dispatches, by
 segment count, to the handler that used to live at that exact path — now
 moved verbatim into `api/_lib/handlers/` (no behavior changed, just where the
 code lives). This keeps the project at 11 functions total. If you're on a
 paid Vercel plan and prefer one file per route for readability, you can
 freely split these back out.
+
+A mandatory catch-all (`[...segments].js`) never matches the *bare* resource
+path by itself (e.g. `/api/tools` with zero extra segments) — only paths
+with at least one segment. `vercel.json` therefore rewrites the five bare
+list/create endpoints (`/api/tools`, `/api/categories`, `/api/articles`,
+`/api/submissions`, `/api/ad-slots`) to a `.../__root__` sentinel path before
+they reach the function, and each router treats a single `__root__` segment
+exactly like zero segments. `/api/admin/*` doesn't need this since it has no
+bare-path route (always `/api/admin/auth`, `/check`, `/tools`, `/ad-slots`).

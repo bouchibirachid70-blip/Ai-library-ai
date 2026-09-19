@@ -1,5 +1,7 @@
-// /api/admin/[[...segments]] — same pattern as /api/tools; see that
-// router's comment for why this exists.
+// /api/admin/[...segments] — same pattern as /api/tools; see that router's
+// comment for why this exists. Uses Vercel's mandatory catch-all (not the
+// Next.js-only optional [[...segments]]); no rewrite/sentinel is needed
+// here since every admin route already has at least one segment.
 //   ['auth']      -> POST login                    (api/admin/auth.js)
 //   ['check']     -> GET session check              (api/admin/check.js)
 //   ['tools']     -> GET all tools, any status       (api/admin/tools.js)

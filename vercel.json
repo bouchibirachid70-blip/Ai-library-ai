@@ -3,6 +3,11 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/robots.txt", "destination": "/api/robots" },
+    { "source": "/api/tools", "destination": "/api/tools/__root__" },
+    { "source": "/api/categories", "destination": "/api/categories/__root__" },
+    { "source": "/api/articles", "destination": "/api/articles/__root__" },
+    { "source": "/api/submissions", "destination": "/api/submissions/__root__" },
+    { "source": "/api/ad-slots", "destination": "/api/ad-slots/__root__" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
