@@ -30,6 +30,12 @@ export default async function handler(req, res) {
     return bySlug(req, res);
   }
 
+  // Vercel rewrites /slug/:slug to a one-segment sentinel because the
+  // plain-function catch-all does not reliably match nested paths.
+  if (segments.length === 1 && segments[0] === '__slug__') {
+    return bySlug(req, res);
+  }
+
   if (segments.length === 1) {
     req.query.id = segments[0];
     return byId(req, res);
