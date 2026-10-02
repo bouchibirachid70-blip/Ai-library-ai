@@ -111,6 +111,8 @@ path by itself (e.g. `/api/tools` with zero extra segments) — only paths
 with at least one segment. `vercel.json` therefore rewrites the five bare
 list/create endpoints (`/api/tools`, `/api/categories`, `/api/articles`,
 `/api/submissions`, `/api/ad-slots`) to a `.../__root__` sentinel path before
-they reach the function, and each router treats a single `__root__` segment
-exactly like zero segments. `/api/admin/*` doesn't need this since it has no
-bare-path route (always `/api/admin/auth`, `/check`, `/tools`, `/ad-slots`).
+they reach the function. Nested paths such as `/api/tools/slug/:slug` are not
+rewritten: Vercel's native catch-all route dispatches them directly by their
+actual segments, so they cannot accidentally fall through to the list handler.
+`/api/admin/*` doesn't need a bare-path rewrite since it has no bare-path route
+(always `/api/admin/auth`, `/check`, `/tools`, `/ad-slots`).

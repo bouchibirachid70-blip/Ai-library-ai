@@ -3,7 +3,6 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/robots.txt", "destination": "/api/robots" },
-    { "source": "/api/tools/slug/:slug", "destination": "/api/tools/__slug__?slug=:slug" },
     { "source": "/api/tools", "destination": "/api/tools/__root__" },
     { "source": "/api/categories", "destination": "/api/categories/__root__" },
     { "source": "/api/articles", "destination": "/api/articles/__root__" },

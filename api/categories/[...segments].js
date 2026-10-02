@@ -8,9 +8,10 @@
 import listCreate from '../_lib/handlers/categories-list-create.js';
 import byId from '../_lib/handlers/categories-by-id.js';
 import bySlug from '../_lib/handlers/categories-by-slug.js';
+import { routeSegments } from '../_lib/route.js';
 
 export default async function handler(req, res) {
-  const segments = Array.isArray(req.query.segments) ? req.query.segments : [];
+  const segments = routeSegments(req.query.segments);
 
   if (segments.length === 0 || (segments.length === 1 && segments[0] === '__root__')) {
     return listCreate(req, res);

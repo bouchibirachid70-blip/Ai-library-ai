@@ -11,9 +11,10 @@ import auth from '../_lib/handlers/admin-auth.js';
 import check from '../_lib/handlers/admin-check.js';
 import tools from '../_lib/handlers/admin-tools.js';
 import adSlots from '../_lib/handlers/admin-ad-slots.js';
+import { routeSegments } from '../_lib/route.js';
 
 export default async function handler(req, res) {
-  const segments = Array.isArray(req.query.segments) ? req.query.segments : [];
+  const segments = routeSegments(req.query.segments);
 
   if (segments.length === 1) {
     switch (segments[0]) {

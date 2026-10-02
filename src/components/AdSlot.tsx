@@ -32,7 +32,6 @@ function AdUnit({ slot }: { slot: AdSlotType }) {
 
   useEffect(() => {
     if (ref.current) injectAdHtml(ref.current, slot.code);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slot.id, slot.code]);
 
   return <div ref={ref} data-ad-slot={slot.position} />;
