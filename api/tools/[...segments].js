@@ -25,6 +25,14 @@ export default async function handler(req, res) {
     : rawSegments
       ? [rawSegments]
       : [];
+  const rewrittenSlug = typeof req.query.slug === 'string' ? req.query.slug : '';
+
+  // The Vercel rewrite may preserve the slug as a query parameter even when
+  // it normalizes the catch-all path to the root sentinel.
+  if (rewrittenSlug) {
+    req.query.slug = rewrittenSlug;
+    return bySlug(req, res);
+  }
 
   if (segments.length === 0 || (segments.length === 1 && segments[0] === '__root__')) {
     return listCreate(req, res);
