@@ -19,7 +19,12 @@ import byId from '../_lib/handlers/tools-by-id.js';
 import bySlug from '../_lib/handlers/tools-by-slug.js';
 
 export default async function handler(req, res) {
-  const segments = Array.isArray(req.query.segments) ? req.query.segments : [];
+  const rawSegments = req.query.segments;
+  const segments = Array.isArray(rawSegments)
+    ? rawSegments
+    : rawSegments
+      ? [rawSegments]
+      : [];
 
   if (segments.length === 0 || (segments.length === 1 && segments[0] === '__root__')) {
     return listCreate(req, res);
