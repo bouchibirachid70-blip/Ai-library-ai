@@ -10,6 +10,9 @@ import { routeSegments } from '../_lib/route.js';
 
 export default async function handler(req, res) {
   const segments = routeSegments(req.query.segments);
+  const rewrittenId = typeof req.query.id === 'string' ? req.query.id : '';
+
+  if (rewrittenId) return byId(req, res);
 
   if (segments.length === 0 || (segments.length === 1 && segments[0] === '__root__')) {
     return listCreate(req, res);

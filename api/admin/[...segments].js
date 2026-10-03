@@ -26,6 +26,14 @@ export default async function handler(req, res) {
         return tools(req, res);
       case 'ad-slots':
         return adSlots(req, res);
+      case '__auth__':
+        return auth(req, res);
+      case '__check__':
+        return check(req, res);
+      case '__tools__':
+        return tools(req, res);
+      case '__ad-slots__':
+        return adSlots(req, res);
       default:
         return res.status(404).json({ error: 'Not found' });
     }

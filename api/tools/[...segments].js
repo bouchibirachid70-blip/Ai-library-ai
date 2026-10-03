@@ -21,8 +21,10 @@ import { routeSegments } from '../_lib/route.js';
 export default async function handler(req, res) {
   const segments = routeSegments(req.query.segments);
   const rewrittenSlug = typeof req.query.slug === 'string' ? req.query.slug : '';
+  const rewrittenId = typeof req.query.id === 'string' ? req.query.id : '';
 
   if (rewrittenSlug) return bySlug(req, res);
+  if (rewrittenId) return byId(req, res);
 
   if (segments.length === 0 || (segments.length === 1 && segments[0] === '__root__')) {
     return listCreate(req, res);
@@ -34,6 +36,7 @@ export default async function handler(req, res) {
   }
 
   if (segments.length === 1 && segments[0] === '__slug__') return bySlug(req, res);
+  if (segments.length === 1 && segments[0] === '__id__') return byId(req, res);
 
   if (segments.length === 1) {
     req.query.id = segments[0];
