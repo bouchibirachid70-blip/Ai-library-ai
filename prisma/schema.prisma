@@ -1,0 +1,115 @@
+// Aivora — AI Tools Directory schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Tool {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String
+  websiteUrl  String
+  categoryId  String?
+  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  status      String   @default("pending") // pending | approved | rejected
+  pricing     String   @default("Free") // Free | Freemium | Paid | Contact for pricing
+  tags        String   @default("") // comma-separated tags
+  logo        String?  // url or emoji
+  clicksCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  clicks      Click[]
+
+  @@index([categoryId])
+  @@index([status])
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  icon        String   @default("🏷️")
+  description String   @default("")
+  tools       Tool[]
+  submissions Submission[] @relation("SubmissionCategory")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String   @default("") // HTML
+  excerpt     String   @default("")
+  coverImage  String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Submission {
+  id             String   @id @default(cuid())
+  toolName       String
+  websiteUrl     String
+  description    String
+  submitterEmail String
+  categoryId     String?
+  category       Category? @relation("SubmissionCategory", fields: [categoryId], references: [id], onDelete: SetNull)
+  status         String   @default("pending") // pending | approved | rejected
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([status])
+}
+
+model AdSlot {
+  id        String   @id @default(cuid())
+  position  String // free-text key, e.g. tool_detail_top
+  code      String // full HTML/JS snippet
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([position])
+}
+
+model Click {
+  id        String   @id @default(cuid())
+  toolId    String
+  tool      Tool     @relation(fields: [toolId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([toolId])
+  @@index([createdAt])
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name        String   @default("")
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SiteSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String @default("")
+}

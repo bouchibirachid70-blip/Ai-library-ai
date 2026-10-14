@@ -1,0 +1,171 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Light theme (kept for completeness; dark is default) */
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.99 0.005 200);
+  --foreground: oklch(0.18 0.02 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 250);
+  --popover: oklch(0.99 0.005 200);
+  --popover-foreground: oklch(0.18 0.02 250);
+  --primary: oklch(0.55 0.18 165);
+  --primary-foreground: oklch(0.99 0.01 165);
+  --secondary: oklch(0.96 0.01 200);
+  --secondary-foreground: oklch(0.25 0.02 250);
+  --muted: oklch(0.96 0.01 200);
+  --muted-foreground: oklch(0.5 0.02 250);
+  --accent: oklch(0.95 0.03 165);
+  --accent-foreground: oklch(0.25 0.02 250);
+  --destructive: oklch(0.58 0.24 27);
+  --border: oklch(0.9 0.01 200);
+  --input: oklch(0.92 0.01 200);
+  --ring: oklch(0.55 0.18 165);
+  --chart-1: oklch(0.55 0.18 165);
+  --chart-2: oklch(0.65 0.16 80);
+  --chart-3: oklch(0.6 0.22 300);
+  --chart-4: oklch(0.7 0.15 200);
+  --chart-5: oklch(0.6 0.2 30);
+  --sidebar: oklch(0.985 0.005 200);
+  --sidebar-foreground: oklch(0.18 0.02 250);
+  --sidebar-primary: oklch(0.55 0.18 165);
+  --sidebar-primary-foreground: oklch(0.99 0.01 165);
+  --sidebar-accent: oklch(0.96 0.01 200);
+  --sidebar-accent-foreground: oklch(0.25 0.02 250);
+  --sidebar-border: oklch(0.9 0.01 200);
+  --sidebar-ring: oklch(0.55 0.18 165);
+}
+
+/* Dark theme — default, refined slate + emerald accent */
+.dark {
+  --radius: 0.75rem;
+  --background: oklch(0.16 0.015 250);
+  --foreground: oklch(0.97 0.005 200);
+  --card: oklch(0.205 0.018 250);
+  --card-foreground: oklch(0.97 0.005 200);
+  --popover: oklch(0.205 0.018 250);
+  --popover-foreground: oklch(0.97 0.005 200);
+  --primary: oklch(0.7 0.17 165);
+  --primary-foreground: oklch(0.16 0.03 165);
+  --secondary: oklch(0.26 0.02 250);
+  --secondary-foreground: oklch(0.97 0.005 200);
+  --muted: oklch(0.26 0.02 250);
+  --muted-foreground: oklch(0.68 0.02 250);
+  --accent: oklch(0.3 0.03 250);
+  --accent-foreground: oklch(0.97 0.005 200);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.7 0.17 165);
+  --chart-1: oklch(0.7 0.17 165);
+  --chart-2: oklch(0.75 0.16 80);
+  --chart-3: oklch(0.65 0.22 300);
+  --chart-4: oklch(0.7 0.15 200);
+  --chart-5: oklch(0.65 0.2 30);
+  --sidebar: oklch(0.19 0.017 250);
+  --sidebar-foreground: oklch(0.97 0.005 200);
+  --sidebar-primary: oklch(0.7 0.17 165);
+  --sidebar-primary-foreground: oklch(0.16 0.03 165);
+  --sidebar-accent: oklch(0.26 0.02 250);
+  --sidebar-accent-foreground: oklch(0.97 0.005 200);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.7 0.17 165);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom scrollbar for long lists */
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Subtle grid background utility */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklch, var(--border) 50%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklch, var(--border) 50%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Prose-ish article content (kept lightweight, no external dep) */
+.article-content {
+  @apply text-foreground/90 leading-relaxed;
+}
+.article-content h1 { @apply text-3xl font-bold mt-8 mb-4; }
+.article-content h2 { @apply text-2xl font-semibold mt-8 mb-3; }
+.article-content h3 { @apply text-xl font-semibold mt-6 mb-2; }
+.article-content p { @apply my-4; }
+.article-content ul { @apply list-disc pl-6 my-4 space-y-1; }
+.article-content ol { @apply list-decimal pl-6 my-4 space-y-1; }
+.article-content a { @apply text-primary underline underline-offset-4 hover:opacity-80; }
+.article-content blockquote { @apply border-l-2 border-primary/50 pl-4 italic text-muted-foreground my-4; }
+.article-content pre { @apply bg-muted/60 rounded-md p-4 overflow-x-auto text-sm my-4; }
+.article-content code { @apply bg-muted/60 rounded px-1.5 py-0.5 text-sm font-mono; }
+.article-content img { @apply rounded-lg my-4 max-w-full h-auto; }
+.article-content table { @apply w-full border-collapse my-4 text-sm; }
+.article-content th { @apply border border-border p-2 bg-muted/40 text-left font-semibold; }
+.article-content td { @apply border border-border p-2; }
